@@ -1,1 +1,0 @@
-<img src="Anleitung1.jpg" alt="Book Cover" width="300"/>
