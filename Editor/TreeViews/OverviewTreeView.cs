@@ -42,7 +42,6 @@ namespace FolderPolish.Editor.TreeViews {
             if (item.ID == -1) {
                 return;
             }
-
             EditorGUI.Toggle(toggleRect, item.Selected);
             base.RowGUI(args);
         }
