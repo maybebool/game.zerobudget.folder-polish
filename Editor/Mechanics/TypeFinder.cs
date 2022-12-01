@@ -8,6 +8,7 @@ namespace FolderPolish.Editor.Mechanics {
     /// Class <c>TypeFinder</c> handles search methods for scenes and SO
     /// </summary>
     public class TypeFinder : MonoBehaviour {
+        
         /// <summary>
         /// Searches for scenes in Assets path and returns a list
         /// </summary>
@@ -24,6 +25,8 @@ namespace FolderPolish.Editor.Mechanics {
             }
             return returnList;
         }
+        
+        
         /// <summary>
         /// Searches all paths from Assets Folder for SO and returns a list if SO are found
         /// </summary>
