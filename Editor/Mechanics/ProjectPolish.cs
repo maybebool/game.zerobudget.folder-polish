@@ -27,9 +27,11 @@ namespace FolderPolish.Editor.Mechanics {
         
         
         /// <summary>
-        /// Checks the selected Scenes for Asset-Dependencies via AssetDatabase.
+        /// Checks the selected Scenes for Asset-Dependencies via AssetDatabase ad adds them to a list.
         /// Builds a list of unused Assets
         /// </summary>
+        
+        //https://github.com/AlexeyPerov/Unity-Dependencies-Hunter/blob/master/Packages/DependenciesHunter/Editor/DependenciesHunter.cs
         public static void ScanSelectedScenes() {
             _usedAssetPaths = new List<string>();
 
@@ -56,7 +58,8 @@ namespace FolderPolish.Editor.Mechanics {
         /// </summary>
         /// <param name="scenesFilter">separates the scenes</param>
         /// <returns></returns>
-        // TODO link source for solution 
+        // https://rteditor.battlehub.net/manual/vtv.html
+        //https://git.gvk.idi.ntnu.no/justworks/playground/-/blob/1e1a6bb7b7124274cbaeb90cc40f3e15706983fa/Assets/_Assets/Editor/TreeView/UnityTreeView.cs
         public static List<TreeViewItem> BuildTreeViewItemsList(List<string> scenesFilter) {
             var allItems = new List<TreeViewItem>();
             var treeViewItems = scenesFilter;
@@ -143,6 +146,7 @@ namespace FolderPolish.Editor.Mechanics {
             return false;
         }
         
+        //https://github.com/AlexeyPerov/Unity-Dependencies-Hunter/blob/master/Packages/DependenciesHunter/Editor/DependenciesHunter.cs
         private static List<string> Indexing() {
             _assetPaths = new List<string>();
             var scenes = new List<string>();
@@ -220,7 +224,6 @@ namespace FolderPolish.Editor.Mechanics {
         }
         
         
-        // TODO either remove the whole thing or make it work. Do this at the end. Not important 
         private static void RemoveScriptableObjects() {
             var so = TypeFinder.DetectScriptableObjects<ScriptableObject>();
 

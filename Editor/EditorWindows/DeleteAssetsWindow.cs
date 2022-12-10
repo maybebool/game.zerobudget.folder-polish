@@ -14,24 +14,19 @@ namespace FolderPolish.Editor.EditorWindows {
         
         private string _path = "";
         private static GUIStyle _deleteDesign;
-        private static GUIStyle _buttonDesign;
 
         #endregion
 
         #region MonoBehaviour Methods
         private void OnGUI() {
-            ShowNotification(new GUIContent("Are you sure you want to delete the assets ?"));
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
+            GUI.contentColor = Color.red;
             using (new EditorGUILayout.HorizontalScope()) {
-                if (GUILayout.Button("CANCEL", _buttonDesign)) {
-                    Close();
-                } 
-                if (GUILayout.Button("DELETE ASSETS", _deleteDesign)) {
+                if (GUILayout.Button("Delete", GUILayout.Height(40))) {
                     UnusedAssetsAnnihilation();
                     Close();
                 }
             }
+            ShowNotification(new GUIContent("Are you sure you want to delete your selection?"));
         }
         
         #endregion
@@ -45,7 +40,6 @@ namespace FolderPolish.Editor.EditorWindows {
         public static void OpenConfirmationWindow(Rect rect) {
             _deleteDesign = new GUIStyle(EditorStyles.miniButton);
             _deleteDesign.hover.textColor = Color.cyan;
-            _buttonDesign = new GUIStyle(EditorStyles.miniButton);
             var window = GetWindow<DeleteAssetsWindow>();
             window.titleContent = new GUIContent("Confirm Polish?");
             var size = new Vector2(500, 200);
