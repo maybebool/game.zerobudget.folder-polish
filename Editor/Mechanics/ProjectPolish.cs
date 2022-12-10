@@ -159,49 +159,45 @@ namespace FolderPolish.Editor.Mechanics {
                 var path = AssetDatabase.GUIDToAssetPath(assetGUIDs[i]);
 
                 if (!CheckForUnselectedPath(path)) {
-                    const bool processAsset = true;
+                    try {
+                        var typeString = AssetDatabase.GetMainAssetTypeAtPath(path).ToString();
 
-                    if (processAsset) {
-                        try {
-                            var typeString = AssetDatabase.GetMainAssetTypeAtPath(path).ToString();
-
-                            switch (typeString) {
-                                case "UnityEditor.DefaultAsset" when !AssetDatabase.IsValidFolder(path): {
-                                    if (path.EndsWith(".cs", true, null)) {
-                                        if (!OptionSetter.ExcludeScripts) {
-                                            _assetPaths.Add(path);
-                                        }
-                                    }else {
-                                        _assetPaths.Add(path);
-                                    }
-                                    break;
-                                }
-                                case "UnityEditor.DefaultAsset":
-                                    _assetPaths.Add(path);
-                                    scenes.Add(path);
-                                    break;
-                                case "UnityEditor.SceneAsset":
-                                    scenes.Add(path);
-                                    _assetPaths.Add(path);
-                                    break;
-                                case "UnityEditor.MonoScript": {
+                        switch (typeString) {
+                            case "UnityEditor.DefaultAsset" when !AssetDatabase.IsValidFolder(path): {
+                                if (path.EndsWith(".cs", true, null)) {
                                     if (!OptionSetter.ExcludeScripts) {
                                         _assetPaths.Add(path);
                                     }
-                                    break;
+                                }else {
+                                    _assetPaths.Add(path);
                                 }
-                                case "UnityEngine.TextAsset":
-                                    _assetPaths.Add(path);
-                                    break;
-                                default:
-                                    _assetPaths.Add(path);
-                                    break;
+                                break;
                             }
+                            case "UnityEditor.DefaultAsset":
+                                _assetPaths.Add(path);
+                                scenes.Add(path);
+                                break;
+                            case "UnityEditor.SceneAsset":
+                                scenes.Add(path);
+                                _assetPaths.Add(path);
+                                break;
+                            case "UnityEditor.MonoScript": {
+                                if (!OptionSetter.ExcludeScripts) {
+                                    _assetPaths.Add(path);
+                                }
+                                break;
+                            }
+                            case "UnityEngine.TextAsset":
+                                _assetPaths.Add(path);
+                                break;
+                            default:
+                                _assetPaths.Add(path);
+                                break;
                         }
-                        catch {
-                            _assetPaths.Add(path);
-                            Debug.Log("Shit doesnt work like I want it");
-                        }
+                    }
+                    catch {
+                        _assetPaths.Add(path);
+                        Debug.Log("Shit doesnt work like I want it");
                     }
                 }
                 else {
