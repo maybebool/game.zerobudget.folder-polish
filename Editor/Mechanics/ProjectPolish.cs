@@ -133,16 +133,16 @@ namespace FolderPolish.Editor.Mechanics {
         }
 
         private static bool IsSceneAsset(string path, List<string> scenePaths) {
-            if (scenePaths.Contains(path)) return true;
-            else return false;
+            return scenePaths.Contains(path);
         }
         
         private static bool CheckForUnselectedPath(string path) {
-            for (int i = 0; i < OptionSetter.ExcludedFolders.Count; i++) {
-                var tmp = OptionSetter.ExcludedFolders[i];
+            foreach (var t in OptionSetter.ExcludedFolders) {
+                var tmp = t;
                 tmp = tmp.Substring(7, tmp.Length - 7);
                 if (path.Contains(tmp)) return true;
             }
+
             return false;
         }
         
@@ -155,8 +155,8 @@ namespace FolderPolish.Editor.Mechanics {
             searchFolders[0] = "Assets";
             var assetGUIDs = AssetDatabase.FindAssets("", searchFolders);
 
-            for (int i = 0; i < assetGUIDs.Length; i++) {
-                var path = AssetDatabase.GUIDToAssetPath(assetGUIDs[i]);
+            foreach (var t in assetGUIDs) {
+                var path = AssetDatabase.GUIDToAssetPath(t);
 
                 if (!CheckForUnselectedPath(path)) {
                     try {
