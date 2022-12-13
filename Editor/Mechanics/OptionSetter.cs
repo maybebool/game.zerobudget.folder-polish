@@ -18,7 +18,7 @@ namespace FolderPolish.Editor.Mechanics {
         /// <value>
         /// Property <c>ExcludeSO</c> represents a bool for excluding SO
         /// </value>
-        public static bool ExcludeSO { get; }
+        public static bool ExcludeSo { get; }
         
         /// <value>
         /// Property <c>ExcludedFolders</c> represents a List of excluded Folder Assets

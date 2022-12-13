@@ -8,7 +8,8 @@ using UnityEngine;
 namespace FolderPolish.Editor.Mechanics {
     
     /// <summary>
-    /// Class <c>ProjectPolish</c> handles the Asset selection methods for the EditorWindows
+    /// Class <c>ProjectPolish</c> handles the Asset selection methods for the EditorWindows. Scenes scan, Asset indexing
+    /// TreeviewList components and separation between used and unused Assets are handled in here. 
     /// </summary>
     public class ProjectPolish {
         
@@ -25,13 +26,13 @@ namespace FolderPolish.Editor.Mechanics {
 
         #region Methods
         
+        //Idea from:
+        //https://github.com/AlexeyPerov/Unity-Dependencies-Hunter/blob/master/Packages/DependenciesHunter/Editor/DependenciesHunter.cs
         
         /// <summary>
         /// Checks the selected Scenes for Asset-Dependencies via AssetDatabase ad adds them to a list.
         /// Builds a list of unused Assets
         /// </summary>
-        
-        //https://github.com/AlexeyPerov/Unity-Dependencies-Hunter/blob/master/Packages/DependenciesHunter/Editor/DependenciesHunter.cs
         public static void ScanSelectedScenes() {
             _usedAssetPaths = new List<string>();
 
@@ -53,13 +54,15 @@ namespace FolderPolish.Editor.Mechanics {
             LaunchCleaningWindow();
         }
         
+        // Idea from:
+        // https://rteditor.battlehub.net/manual/vtv.html
+        //https://git.gvk.idi.ntnu.no/justworks/playground/-/blob/1e1a6bb7b7124274cbaeb90cc40f3e15706983fa/Assets/_Assets/Editor/TreeView/UnityTreeView.cs
+        
         /// <summary>
         /// Creates a TreeView of Scenes found in Project. The found scenes are stored in a list
         /// </summary>
         /// <param name="scenesFilter">separates the scenes</param>
         /// <returns></returns>
-        // https://rteditor.battlehub.net/manual/vtv.html
-        //https://git.gvk.idi.ntnu.no/justworks/playground/-/blob/1e1a6bb7b7124274cbaeb90cc40f3e15706983fa/Assets/_Assets/Editor/TreeView/UnityTreeView.cs
         public static List<TreeViewItem> BuildTreeViewItemsList(List<string> scenesFilter) {
             var allItems = new List<TreeViewItem>();
             var treeViewItems = scenesFilter;
@@ -146,6 +149,7 @@ namespace FolderPolish.Editor.Mechanics {
             return false;
         }
         
+        // Idea from:
         //https://github.com/AlexeyPerov/Unity-Dependencies-Hunter/blob/master/Packages/DependenciesHunter/Editor/DependenciesHunter.cs
         private static List<string> Indexing() {
             _assetPaths = new List<string>();
@@ -211,7 +215,7 @@ namespace FolderPolish.Editor.Mechanics {
                 }
             }
 
-            if (OptionSetter.ExcludeSO) {
+            if (OptionSetter.ExcludeSo) {
                 RemoveScriptableObjects();
             }
             

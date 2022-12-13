@@ -4,6 +4,7 @@ using FolderPolish.Editor.Mechanics;
 using FolderPolish.Editor.TreeViews;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
+using UnityEditor.Sprites;
 using UnityEngine;
 
 namespace FolderPolish.Editor.EditorWindows {
@@ -30,14 +31,12 @@ namespace FolderPolish.Editor.EditorWindows {
         private static OverviewTreeView _mSceneTreeView;
         private static GUIStyle _buttonStyle;
         private static GUIStyle _polishButtonStyle;
-
-        // GUI
         private Rect TopBarRect => new(10f, 10f, position.width - 20f, 50f);
         private Rect SceneSelectRect => new(10f, 40f, position.width - 20f, position.height -60f);
 
         #endregion
 
-        #region MonoBehaviour Methods
+        #region Unity Methods
 
         private void OnEnable() {
             try {
@@ -54,7 +53,7 @@ namespace FolderPolish.Editor.EditorWindows {
             }
             catch (Exception) {
 #if UNITY_EDITOR
-                Debug.Log("MainMenu.OnEnable error");
+                Debug.Log("MainMenu.OnEnable error ");
 #endif
                 throw;
             }
@@ -63,9 +62,6 @@ namespace FolderPolish.Editor.EditorWindows {
         private void OnGUI() {
             TopBar(TopBarRect);
             DoTreeView(SceneSelectRect);
-#if UNITY_EDITOR
-            Debug.Log("Main Menu OnGUI works");
-#endif
         }
 
         #endregion

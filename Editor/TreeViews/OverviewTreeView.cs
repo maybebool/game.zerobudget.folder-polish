@@ -24,7 +24,7 @@ namespace FolderPolish.Editor.TreeViews {
 
         #endregion
 
-        #region MonoBehaviour Methods
+        #region Unity Methods
 
         protected override void RowGUI(RowGUIArgs args) {
             extraSpaceBeforeIconAndLabel = 20f;

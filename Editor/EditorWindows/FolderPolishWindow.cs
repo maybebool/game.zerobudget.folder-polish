@@ -24,7 +24,7 @@ namespace FolderPolish.Editor.EditorWindows {
 
         #endregion
 
-        #region MonoBehaviour Methods
+        #region Unity Methods
 
         private void OnEnable() {
             _buttonDesign = new GUIStyle(EditorStyles.toolbarButton);
