@@ -101,7 +101,7 @@ namespace FolderPolish.Editor.Mechanics {
         }
         
         /// <summary>
-        /// Return a List (TreeViewItems) of Assets of the parent Assets/
+        /// Return a List (TreeViewItems) of Assets of the parent Assets/..
         /// Can be used to store Assets from scanned Scenes
         /// </summary>
         /// <returns></returns>
